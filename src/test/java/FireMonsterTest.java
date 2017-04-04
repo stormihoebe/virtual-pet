@@ -109,14 +109,6 @@ public class FireMonsterTest {
     assertEquals(testFireMonster.isAlive(), true);
   }
 
-  @Test
-  public void depleteLevels_reducesAllLevels(){
-    FireMonster testFireMonster = new FireMonster("Bubbles", 1);
-    testFireMonster.depleteLevels();
-    assertEquals(testFireMonster.getFoodLevel(), (FireMonster.MAX_FOOD_LEVEL / 2) - 1);
-    assertEquals(testFireMonster.getSleepLevel(), (FireMonster.MAX_SLEEP_LEVEL / 2) - 1);
-    assertEquals(testFireMonster.getPlayLevel(), (FireMonster.MAX_PLAY_LEVEL / 2) - 1);
-  }
 
   @Test
   public void isAlive_recognizesFireMonsterIsDeadWhenLevelsReachMinimum_false(){
@@ -274,5 +266,35 @@ public class FireMonsterTest {
     assertFalse(testFireMonster.isAlive());
     assertTrue(testFireMonster.getFoodLevel() >= 0);
   }
+///fire specific tests
 
+  @Test
+  public void fireMonster_instantiatesWithHalfFullFireLevel(){
+    FireMonster testFireMonster = new FireMonster("Smokey", 1);
+    assertEquals(testFireMonster.getFireLevel(), (FireMonster.MAX_FIRE_LEVEL / 2));
+  }
+
+  @Test
+  public void kindling_increasesFireMonsterFireLevel(){
+    FireMonster testFireMonster = new FireMonster("Smokey", 1);
+    testFireMonster.kindling();
+    assertTrue(testFireMonster.getFireLevel() > (FireMonster.MAX_FIRE_LEVEL / 2));
+  }
+
+  @Test(expected = UnsupportedOperationException.class)
+  public void kindling_throwsExceptionIfFireLevelIsAtMaxValue(){
+    FireMonster testFireMonster = new FireMonster("Smokey", 1);
+    for(int i = FireMonster.MIN_ALL_LEVELS; i <= (FireMonster.MAX_FIRE_LEVEL); i++){
+      testFireMonster.kindling();
+    }
+  }
+  @Test
+   public void depleteLevels_reducesAllLevels(){
+     FireMonster testFireMonster = new FireMonster("Bubbles", 1);
+     testFireMonster.depleteLevels();
+     assertEquals(testFireMonster.getFoodLevel(), (FireMonster.MAX_FOOD_LEVEL / 2) - 1);
+     assertEquals(testFireMonster.getSleepLevel(), (FireMonster.MAX_SLEEP_LEVEL / 2) - 1);
+     assertEquals(testFireMonster.getPlayLevel(), (FireMonster.MAX_PLAY_LEVEL / 2) - 1);
+     assertEquals(testFireMonster.getFireLevel(), (FireMonster.MAX_FIRE_LEVEL / 2) - 1);
+   }
 }
