@@ -19,6 +19,8 @@ public class DatabaseRule extends ExternalResource {
       con.createQuery(deleteMonstersQuery).executeUpdate();
       con.createQuery(deleteCommunitiesQuery).executeUpdate();
       con.createQuery(deleteJoinsQuery).executeUpdate();
+
+
     }
   }
 

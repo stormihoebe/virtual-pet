@@ -3,11 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.text.DateFormat;
 
 public class Monster {
+  private int id;
   private String name;
   private int personId;
-  private int id;
   private int foodLevel;
   private int sleepLevel;
   private int playLevel;
@@ -28,7 +31,7 @@ public class Monster {
     playLevel = MAX_PLAY_LEVEL / 2;
     sleepLevel = MAX_SLEEP_LEVEL / 2;
     foodLevel = MAX_FOOD_LEVEL / 2;
-    timer = new Time();
+    timer = new Timer();
   }
 
   public boolean isAlive() {
